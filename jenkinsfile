@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    environment {
+        NODE_ENV = 'production'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/sachilz/mern-todo-docker-nginx-deployment.git'
+            }
+        }
+
+        stage('Install Backend') {
+            steps {
+                dir('server') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Install Frontend') {
+            steps {
+                dir('client') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                dir('client') {
+                    sh 'npm run build'
+                }
+            }
+        }
+
+        stage('Run Tests (optional)') {
+            steps {
+                echo 'Add tests here if you have any'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'echo "Add deploy commands here (docker-compose up, rsync, etc.)"'
+            }
+        }
+    }
+}
