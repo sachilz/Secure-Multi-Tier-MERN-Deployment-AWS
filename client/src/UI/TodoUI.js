@@ -183,7 +183,7 @@ const TodoUI = () => {
             className="todo-clear-btn"
           >
             <XSquare size={20} />
-            Clear Completed
+            Clear Completed 23
           </button>
         </div>
       </div>
