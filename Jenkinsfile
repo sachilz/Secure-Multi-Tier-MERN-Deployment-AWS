@@ -7,7 +7,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 git branch: 'main',
@@ -41,6 +40,7 @@ pipeline {
                 }
             }
         }
+    }
 
         stage('Quality Gate') {
             steps {
