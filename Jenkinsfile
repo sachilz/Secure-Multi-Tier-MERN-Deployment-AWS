@@ -2,14 +2,16 @@ pipeline {
     agent any
 
     environment {
-        GITLEAKS_PATH = "C:\\gitleaks\\gitleaks.exe"
+        GITLEAKS_PATH = "C:\\DevSecOps\\gitleaks\\gitleaks.exe"
+        SONAR_SCANNER = "C:\\DevSecOps\\sonar-scanner\\bin\\sonar-scanner.bat"
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/sachilz/dockerized-mern-app'
+                url: 'https://github.com/sachilz/mern-todo-docker-nginx-deployment'
             }
         }
 
@@ -19,9 +21,23 @@ pipeline {
             }
         }
 
-         stage('Gitleaks Secret Scan') {
+        stage('Gitleaks Secret Scan') {
             steps {
-                bat "${GITLEAKS_PATH} detect --source . --verbose"
+                bat "\"${GITLEAKS_PATH}\" detect --source . --verbose"
+            }
+        }
+
+        stage('SonarQube Scan') {
+            steps {
+                withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                    bat """
+                    \"${SONAR_SCANNER}\" ^
+                    -Dsonar.projectKey=mern-todo-docker-nginx-deployment ^
+                    -Dsonar.sources=. ^
+                    -Dsonar.host.url=http://localhost:9000 ^
+                    -Dsonar.token=%SONAR_TOKEN%
+                    """
+                }
             }
         }
     }
