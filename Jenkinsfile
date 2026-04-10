@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/sachilz/mern-todo-docker-nginx-deployment'
+                url: 'https://github.com/sachilz/dockerized-mern-app'
             }
         }
 
@@ -37,6 +37,14 @@ pipeline {
                     -Dsonar.host.url=http://localhost:9000 ^
                     -Dsonar.token=%SONAR_TOKEN%
                     """
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
