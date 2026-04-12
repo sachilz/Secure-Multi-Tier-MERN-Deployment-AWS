@@ -5,7 +5,6 @@ pipeline {
         GITLEAKS_PATH = "C:\\DevSecOps\\gitleaks\\gitleaks.exe"
         SONAR_SCANNER = "C:\\DevSecOps\\sonar-scanner\\bin\\sonar-scanner.bat"
         TRIVY_PATH = "C:\\DevSecOps\\trivy\\trivy.exe"
-        HADOLINT_PATH = "C:\\DevSecOps\\hadolint\\hadolint.exe"
     }
 
     stages {
@@ -54,8 +53,10 @@ pipeline {
 
         stage('Hadolint Scan') {
             steps {
-                bat "\"${HADOLINT_PATH}\" client/Dockerfile"
-                bat "\"${HADOLINT_PATH}\" server/Dockerfile"
+                bat '''
+                docker run --rm -i hadolint/hadolint < client/Dockerfile
+                docker run --rm -i hadolint/hadolint < server/Dockerfile
+                '''
             }
         }
 
