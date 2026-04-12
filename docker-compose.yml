@@ -3,6 +3,7 @@ services:
     build:
       context: ./server
     container_name: project01-server
+    image: todo-app-server
     restart: unless-stopped
     env_file:
       - ./server/.env
@@ -11,6 +12,7 @@ services:
     build:
       context: ./client
     container_name: project01-client
+    image: todo-app-client
     restart: unless-stopped
     depends_on:
       - server
