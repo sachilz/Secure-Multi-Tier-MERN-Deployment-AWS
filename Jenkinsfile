@@ -70,13 +70,20 @@ pipeline {
             }
         }
 
+        stage('Trivy Base Image Scan') {
+            steps {
+                bat "\"${TRIVY_PATH}\" image --severity HIGH,CRITICAL node:20-alpine"
+                bat "\"${TRIVY_PATH}\" image --severity HIGH,CRITICAL nginx:1.27-alpine"
+            }
+        }
+
         stage('Docker Compose Build') {
             steps {
                 bat 'docker compose build'
             }
         }
 
-        stage('Trivy Container Scan') {
+        stage('Trivy final image Scan') {
             steps {
                 bat "\"${TRIVY_PATH}\" image --severity HIGH,CRITICAL todo-app-server"
                 bat "\"${TRIVY_PATH}\" image --severity HIGH,CRITICAL todo-app-client"
