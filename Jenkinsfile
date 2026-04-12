@@ -63,10 +63,8 @@ pipeline {
         stage('Inject Env File') {
             steps {
                 withCredentials([
-                    file(credentialsId: 'todo-app-root-env', variable: 'ROOT_ENV'),
                     file(credentialsId: 'todo-app-server-env', variable: 'SERVER_ENV')
                     ]) {
-                    bat "copy \"%ROOT_ENV%\" .env"
                     bat "copy \"%SERVER_ENV%\" server\\.env"
                 }
             }
