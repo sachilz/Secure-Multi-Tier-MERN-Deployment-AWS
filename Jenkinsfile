@@ -71,8 +71,8 @@ pipeline {
 
         stage('Trivy Container Scan') {
             steps {
-                bat "\"${TRIVY_PATH}\" image --severity HIGH,CRITICAL project01-Server"
-                bat "\"${TRIVY_PATH}\" image --severity HIGH,CRITICAL project-01-Client"
+                bat "\"${TRIVY_PATH}\" image --severity HIGH,CRITICAL todo-app-Server"
+                bat "\"${TRIVY_PATH}\" image --severity HIGH,CRITICAL todo-app-Client"
             }
         }
 
