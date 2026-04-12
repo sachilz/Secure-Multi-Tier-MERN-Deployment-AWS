@@ -33,7 +33,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
                     bat """
                     \"${SONAR_SCANNER}\" ^
-                    -Dsonar.projectKey=mern-todo-docker-nginx-deployment ^
+                    -Dsonar.projectKey=CI-CD-Enabled-MERN-Stack-Todo-Application ^
                     -Dsonar.sources=. ^
                     -Dsonar.host.url=http://localhost:9000 ^
                     -Dsonar.token=%SONAR_TOKEN%
@@ -53,8 +53,12 @@ pipeline {
 
         stage('Inject Env File') {
             steps {
-                withCredentials([file(credentialsId: 'env-file', variable: 'ENV_FILE')]) {
-                    bat "copy \"%ENV_FILE%\" backend\\.env"
+                withCredentials([
+                    file(credentialsId: 'todo-app-root-env', variable: 'ROOT_ENV'),
+                    file(credentialsId: 'todo-app-server-env', variable: 'SERVER_ENV')
+                    ]) {
+                    bat "copy \"%ROOT_ENV%\" .env"
+                    bat "copy \"%SERVER_ENV%\" server\\.env"
                 }
             }
         }
@@ -71,7 +75,7 @@ pipeline {
                 bat "\"${TRIVY_PATH}\" image --severity HIGH,CRITICAL project-01-Client"
             }
         }
-        
+
         stage('Run Containers') {
             steps {
                 bat 'docker compose up -d'
