@@ -5,9 +5,11 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN npm ci --omit=dev && npm cache clean --force
 
-COPY . .
+COPY server.js ./
+COPY routes ./routes
+COPY models ./models
 
 EXPOSE 5000
 
