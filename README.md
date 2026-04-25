@@ -56,8 +56,33 @@ I used **Multi-Stage Docker Builds** to optimize the application's footprint:
 
 ---
 
-## 🚀 How to Run Locally
+## Security Highlights 🔐
+- Early-stage secret detection using Gitleaks
+- Static code analysis with SonarQube
+- Container linting using Hadolint
+- Vulnerability scanning using Trivy (base + final images)
+- Private subnet isolation for backend services
+- Controlled traffic via Security Groups
 
+---
+
+## Challenges & Learnings 💥
+### 1. Backend Connectivity Issues
+- Fixed Docker networking and service communication
+- Ensured backend binds to 0.0.0.0
+
+### 2. Nginx Configuration Errors
+- Debugged reverse proxy issues
+- Fixed routing and syntax errors
+
+### 3. Container Communication
+- Learned Docker service discovery
+- Used proper internal networking instead of IPs
+
+### 4. Cloud Networking
+- Understood VPC, subnets, IGW, and NAT Gateway behavior
+---
+## 🚀 How to Run Locally
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/sachilz/Secure-Multi-Tier-MERN-Deployment-AWS.git
@@ -74,3 +99,23 @@ PORT=5000
 ```bash
 docker-compose up --build -d
 ```
+Application will be available at http://localhost
+
+---
+
+## Conclusion 📌
+This project demonstrates how a simple MERN application can be transformed into a secure, automated, and production-inspired deployment pipeline using modern DevOps and cloud practices.
+
+---
+
+## Support ⭐
+### If you found this project useful:
+⭐ Star the repo
+🔁 Share with others
+💬 Connect with me on LinkedIn
+
+---
+
+## Author 👤
+Sachintha Dilshan <br>
+LinkedIn: https://www.linkedin.com/in/sachilz/
