@@ -51,9 +51,26 @@ I used **Multi-Stage Docker Builds** to optimize the application's footprint:
 
 ---
 
+## Deployment Workflow ☁️
+![flow](./asset/2.gif)
+
+---
+
 ## 🚀 How to Run Locally
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-cd your-repo-name
+git clone https://github.com/sachilz/Secure-Multi-Tier-MERN-Deployment-AWS.git
+cd Secure-Multi-Tier-MERN-Deployment-AWS
+```
+### 2. Set up Environment Variables
+Create a .env file in the backend directory and add your MongoDB URI
+```bash
+MONGO_URI=your_mongodb_connection_string
+PORT=5000
+```
+
+### 3. Run with Docker Compose
+```bash
+docker-compose up --build -d
+```
