@@ -6,7 +6,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 
 ## 📌 Project Overview
-This project is a production-grade deployment of a **MERN Stack Task Management Application**. It features a highly secure **AWS VPC Architecture**, containerized delivery with **Docker**, and a robust **DevSecOps pipeline**.
+This project is a production-grade deployment of a **MERN Stack TODO Application**. It features a highly secure **AWS VPC Architecture**, containerized delivery with **Docker**, and a robust **DevSecOps pipeline**.
 
 The goal was to move beyond simple deployment and focus on **security**, **network isolation**, and **infrastructure efficiency**.
 
