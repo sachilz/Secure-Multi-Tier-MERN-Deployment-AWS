@@ -13,7 +13,7 @@ The goal was to move beyond simple deployment and focus on **security**, **netwo
 ---
 
 ## 🏗️ Architecture Design
-![Architecture Diagram](./asset/1.gif)
+![AWS MERN Three-Tier Architecture Diagram](./AWS%20MERN%20Three-Tier%20Architecture%20Diagram.png)
 The infrastructure is built on AWS with a security-first mindset:
 
 * **Custom VPC:** Separated into **Public** and **Private** subnets.
@@ -52,7 +52,7 @@ I used **Multi-Stage Docker Builds** to optimize the application's footprint:
 ---
 
 ## Deployment Workflow ☁️
-![flow](./asset/2.gif)
+![DevSecOps CI/CD Pipeline Overview](./DevSecOps%20CI_CD%20Pipeline%20Overview.png)
 
 ---
 
